@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Data</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background: url('https://png.pngtree.com/thumb_back/fh260/background/20220112/pngtree-glass-morphim-effect-registration-banner-with-gradient-blue-image_934693.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Submitted Data</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody id="dataTable">
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch stored data from localStorage
+        let storedData = JSON.parse(localStorage.getItem("submittedData"));
+
+        if (storedData) {
+            let tableRow = `<tr>
+                <td>${storedData.firstName}</td>
+                <td>${storedData.lastName}</td>
+                <td>${storedData.email}</td>
+                <td>${storedData.dob}</td>
+                <td>${storedData.age}</td>
+                <td>${storedData.gender}</td>
+                <td>${storedData.phone}</td>
+                <td>${storedData.address}</td>
+            </tr>`;
+
+            document.getElementById("dataTable").innerHTML = tableRow;
+        } else {
+            document.getElementById("dataTable").innerHTML = "<tr><td colspan='8'>No data submitted</td></tr>";
+        }
+    </script>
+
+</body>
+</html>

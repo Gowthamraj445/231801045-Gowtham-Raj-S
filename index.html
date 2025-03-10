@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background: url('https://png.pngtree.com/thumb_back/fh260/background/20220112/pngtree-glass-morphim-effect-registration-banner-with-gradient-blue-image_934693.jpg') no-repeat center center/cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 350px; 
+            margin: auto; 
+            padding: 20px; 
+            background: rgba(255, 255, 255, 0.9); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+            border-radius: 8px;
+        }
+        h2 {
+            font-family: "Times New Roman", Times, serif;
+            color: #00008B;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        input, textarea {
+            width: 100%; 
+            margin: 5px 0; 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+        }
+        .gender-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0;
+        }
+        .error { 
+            color: red; 
+            font-size: 12px; 
+            text-align: left; 
+            display: block; 
+        }
+        button {
+            width: 100%; 
+            padding: 10px; 
+            background: green; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Signup Form</h2>
+    <div class="container">
+        <form id="signupForm">
+            <input type="text" id="firstName" placeholder="First Name" required minlength="4">
+            <span class="error" id="firstNameError"></span>
+
+            <input type="text" id="lastName" placeholder="Last Name" required minlength="1">
+            <span class="error" id="lastNameError"></span>
+
+            <input type="email" id="email" placeholder="Email" required>
+            <span class="error" id="emailError"></span>
+
+            <input type="date" id="dob" required>
+            <span class="error" id="dobError"></span>
+
+            <input type="number" id="age" placeholder="Age" required min="1" max="99">
+            <span class="error" id="ageError"></span>
+
+            <div class="gender-container">
+                <label>Gender:</label>
+                <input type="radio" name="gender" value="Male" required> Male
+                <input type="radio" name="gender" value="Female" required> Female
+            </div>
+            <span class="error" id="genderError"></span>
+
+            <input type="text" id="phone" placeholder="Phone Number" required pattern="\d{10}">
+            <span class="error" id="phoneError"></span>
+
+            <textarea id="address" placeholder="Address" required></textarea>
+            <span class="error" id="addressError"></span>
+
+            <button type="button" onclick="submitForm()">Signup</button>
+        </form>
+    </div>
+
+    <script>
+        function submitForm() {
+            let firstName = document.getElementById("firstName").value.trim();
+            let lastName = document.getElementById("lastName").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let dob = document.getElementById("dob").value;
+            let age = document.getElementById("age").value.trim();
+            let gender = document.querySelector('input[name="gender"]:checked')?.value;
+            let phone = document.getElementById("phone").value.trim();
+            let address = document.getElementById("address").value.trim();
+
+            if (!firstName || !lastName || !email || !dob || !age || !gender || !phone || !address) {
+                alert("Please fill all fields correctly.");
+                return;
+            }
+
+            let formData = {
+                firstName, lastName, email, dob, age, gender, phone, address
+            };
+            localStorage.setItem("submittedData", JSON.stringify(formData));
+
+            window.location.href = "Submitted_data.html";
+        }
+    </script>
+
+</body>
+</html>
